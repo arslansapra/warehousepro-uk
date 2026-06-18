@@ -1,2 +1,51 @@
-# warehousepro-uk
+# WarehousePro UK
+
 A professional Warehouse Management System built with Laravel 12 and Tailwind CSS, inspired by real UK warehouse operations.
+
+## Features
+
+- Authentication
+- Role Based Access Control
+- Product Management
+- Warehouse Locations
+- Supplier Management
+- Purchase Orders
+- Customer Orders
+- Stock Tracking
+- Notifications
+- Scheduler
+- REST API
+- Dashboard Analytics
+
+## Tech Stack
+
+- Laravel 12
+- PHP 8.2+
+- MySQL
+- Tailwind CSS
+- Vite
+- Laravel Sanctum
+- GitHub Actions (later)
+- Pest/PHPUnit
+
+## User Roles
+
+- Admin
+- Warehouse Manager
+- Staff
+- Picker
+- Packer
+
+## Project Status
+
+🚧 In Development
+
+## Learning Objectives
+
+This project is being developed using professional software development practices.
+
+## Author
+
+Muhammad Arslan
+muhammad.arslan4527@gmail.com
+[Linkedin](https://www.linkedin.com/in/marslandev/)
