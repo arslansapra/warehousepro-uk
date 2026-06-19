@@ -7,3 +7,9 @@
 - Project planning
 - Documentation setup
 - GitHub repository initialization
+- Laravel 12 installation
+- Breeze authentication
+- Tailwind setup
+- Database configuration
+
+
