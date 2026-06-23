@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\WarehouseLocationController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/categories', CategoryController::class);
     //WarehouseLocations Route
     Route::resource('/warehouse-locations', WarehouseLocationController::class);
+    //Products Route
+    Route::resource('/products', ProductController::class );
 
 });
 
