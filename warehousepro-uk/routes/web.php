@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\WarehouseLocationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,7 +20,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     //Categories Route
-    Route::resource('categories', CategoryController::class);
+    Route::resource('/categories', CategoryController::class);
+    //WarehouseLocations Route
+    Route::resource('/warehouse-locations', WarehouseLocationController::class);
 
 });
 
