@@ -47,5 +47,8 @@ This project is being developed using professional software development practice
 ## Author
 
 Muhammad Arslan
-muhammad.arslan4527@gmail.com
-[Linkedin](https://www.linkedin.com/in/marslandev/)
+
+## Contact
+
+📧 Email: [muhammad.arslan4527@gmail.com](mailto:muhammad.arslan4527@gmail.com)  
+🔗 LinkedIn: [linkedin.com/in/marslandev](https://www.linkedin.com/in/marslandev/)
