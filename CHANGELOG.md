@@ -27,3 +27,11 @@ and this project follows Semantic Versioning.
 - Breeze authentication scaffolding
 - Tailwind CSS setup
 - Database configuration
+
+## v0.3.0 - 2026-06-23
+
+### Added
+
+- Categories CRUD
+- Category validation
+- Category management

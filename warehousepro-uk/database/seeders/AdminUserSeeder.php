@@ -5,24 +5,29 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Role;
 
 class AdminUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
-        User::create([
+        public function run(): void
+        {
+            $roles = Role::all();
 
-        'name' => 'Admin',
+            foreach ($roles as $role) {
 
-        'email' => 'admin@warehousepro.test',
-
-        'password' => bcrypt('password'),
-
-        'role_id' => 1
-
-        ]);
-    }
+                User::firstOrCreate(
+                    [
+                        'email' => $role->slug . '@warehousepro.test'
+                    ],
+                    [
+                        'name' => ucfirst(str_replace('_', ' ', $role->slug)),
+                        'password' => bcrypt('password'),
+                        'role_id' => $role->id
+                    ]
+                );
+            }
+        }
 }
