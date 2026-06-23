@@ -31,7 +31,14 @@ and this project follows Semantic Versioning.
 ## v0.3.0 - 2026-06-23
 
 ### Added
+- Categories CRUD module
+- Warehouse Locations CRUD module
+- Products CRUD module
+- Zone, Rack, and Shelf location structure
+- Tailwind CSS-based UI for Categories, Products, and Warehouse Locations
 
-- Categories CRUD
-- Category validation
-- Category management
+### Improved
+- Category validation using Form Requests
+- Product management with category & location relationships
+- Structured category and warehouse location workflow
+- Consistent UI layout across all modules (Categories, Products, Locations)
