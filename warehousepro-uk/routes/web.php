@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\WarehouseLocationController;
 use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\StockMovementController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,12 +29,14 @@ Route::middleware('auth')->group(function () {
     //Products Route
     Route::resource('/products', ProductController::class );
     //Stock Movement Route
-    Route::resource('stock-movements',StockMovementController::class
+    Route::resource('/stock-movements',StockMovementController::class
     )->only([
         'index',
         'create',
         'store'
     ]);
+    //Supplier Route
+    Route::resource('suppliers', SupplierController::class);
 
 });
 
