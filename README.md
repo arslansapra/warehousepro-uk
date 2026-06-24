@@ -44,6 +44,15 @@ A professional Warehouse Management System built with Laravel 12 and Tailwind CS
 
 This project is being developed using professional software development practices.
 
+### Completed
+
+- Authentication
+- Role Management
+- Categories
+- Warehouse Locations
+- Products
+- Stock Movements
+
 ## Author
 
 Muhammad Arslan
