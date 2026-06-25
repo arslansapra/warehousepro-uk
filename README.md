@@ -52,6 +52,8 @@ This project is being developed using professional software development practice
 - Warehouse Locations
 - Products
 - Stock Movements
+- Supplier Module
+- Purchase Order
 
 ## Author
 

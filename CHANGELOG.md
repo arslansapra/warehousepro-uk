@@ -7,6 +7,41 @@ and this project follows Semantic Versioning.
 
 ---
 
+## [0.5.0] - 2026-06-25
+
+### Added
+- Purchase Orders module implementation
+- Purchase Order creation with supplier selection
+- Dynamic purchase order items (multiple products per order)
+- Purchase Order status tracking
+- Purchase Order details view page
+- Product-level quantity assignment in purchase orders
+- Created-by user tracking for purchase orders
+- Tailwind CSS-based UI for Purchase Orders (index, create, show)
+
+### Improved
+- Purchase order workflow structure
+- Relationship handling between suppliers, products, and orders
+- UI consistency across all modules
+- Better readability in purchase order tables and detail view
+
+---
+
+## [0.4.1] - 2026-06-24
+
+### Added
+- Supplier module implementation (CRUD)
+- Supplier management system (Company, Contact Person, Email, Phone, Status)
+- Supplier activation/inactivation feature
+- Tailwind CSS-based UI for Supplier module (index, create, edit)
+
+### Improved
+- Form validation consistency for supplier data
+- UI consistency with existing modules
+- Clean separation of form partials for reusability
+
+---
+
 ## [0.4.0] - 2026-06-24
 
 ### Added
