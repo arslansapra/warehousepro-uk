@@ -40,6 +40,20 @@ Route::middleware('auth')->group(function () {
     Route::resource('suppliers', SupplierController::class);
     //PurchaseOrder Route
     Route::resource('purchase-orders', PurchaseOrderController::class);
+    Route::post(
+        'purchase-orders/{purchaseOrder}/approve',
+        [PurchaseOrderController::class, 'approve']
+    )->name('purchase-orders.approve');
+
+    Route::post(
+        'purchase-orders/{purchaseOrder}/receive',
+        [PurchaseOrderController::class, 'receive']
+    )->name('purchase-orders.receive');
+
+    Route::post(
+        'purchase-orders/{purchaseOrder}/cancel',
+        [PurchaseOrderController::class, 'cancel']
+    )->name('purchase-orders.cancel');
 
 });
 

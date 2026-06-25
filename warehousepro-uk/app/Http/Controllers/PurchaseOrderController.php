@@ -6,6 +6,7 @@ use App\Models\PurchaseOrder;
 use App\Http\Requests\StorePurchaseOrderRequest;
 use App\Models\Product;
 use App\Models\Supplier;
+use App\Models\StockMovement;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -127,4 +128,62 @@ class PurchaseOrderController extends Controller
     {
         //
     }
+    //Approve PO
+    public function approve(PurchaseOrder $purchaseOrder)
+    {
+        if ($purchaseOrder->status !== 'pending') {
+            return back()->with('error', 'Only pending POs can be approved.');
+        }
+
+        $purchaseOrder->update([
+            'status' => 'approved'
+        ]);
+
+        return back()->with('success', 'Purchase Order approved.');
+    }
+    //Receive PO
+    public function receive(PurchaseOrder $purchaseOrder)
+    {
+        if ($purchaseOrder->status !== 'approved') {
+            return back()->with('error', 'Only approved POs can be received.');
+        }
+
+        foreach ($purchaseOrder->items as $item) {
+
+            $product = $item->product;
+
+            // 1. Increase stock
+            $product->increment('quantity', $item->quantity);
+
+            // 2. Create stock movement
+            StockMovement::create([
+                'product_id' => $product->id,
+                'user_id' => auth()->id(),
+                'type' => 'stock_in',
+                'quantity' => $item->quantity,
+                'reason' => 'PO Received: ' . $purchaseOrder->po_number,
+            ]);
+        }
+
+        $purchaseOrder->update([
+            'status' => 'received',
+            'received_at' => now()
+        ]);
+
+        return back()->with('success', 'Goods received and stock updated.');
+    }
+    //Cancel PO
+    public function cancel(PurchaseOrder $purchaseOrder)
+    {
+        if ($purchaseOrder->status === 'received') {
+            return back()->with('error', 'Received POs cannot be cancelled.');
+        }
+
+        $purchaseOrder->update([
+            'status' => 'cancelled'
+        ]);
+
+        return back()->with('success', 'Purchase Order cancelled.');
+    }
+
 }

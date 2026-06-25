@@ -29,7 +29,7 @@
 
         @endif
 
-        {{-- Table Card --}}
+        {{-- Table --}}
         <div class="bg-white shadow rounded-lg overflow-x-auto">
 
             <table class="w-full">
@@ -64,47 +64,125 @@
 
                 <tbody>
 
-                    @forelse($purchaseOrders as $purchaseOrder)
+                    @forelse($purchaseOrders as $po)
 
                         <tr class="border-t hover:bg-gray-50 transition">
 
                             {{-- PO Number --}}
                             <td class="p-4 font-medium text-gray-800">
-                                {{ $purchaseOrder->po_number }}
+                                {{ $po->po_number }}
                             </td>
 
                             {{-- Supplier --}}
                             <td class="p-4 text-gray-700">
-                                {{ $purchaseOrder->supplier->company_name }}
+                                {{ $po->supplier->company_name }}
                             </td>
 
                             {{-- Status --}}
                             <td class="p-4">
 
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-700">
+                                @if($po->status === 'pending')
 
-                                    {{ ucfirst($purchaseOrder->status) }}
+                                    <span class="inline-flex px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-700">
+                                        Pending
+                                    </span>
 
-                                </span>
+                                @elseif($po->status === 'approved')
+
+                                    <span class="inline-flex px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-700">
+                                        Approved
+                                    </span>
+
+                                @elseif($po->status === 'received')
+
+                                    <span class="inline-flex px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
+                                        Received
+                                    </span>
+
+                                @else
+
+                                    <span class="inline-flex px-3 py-1 rounded-full text-sm bg-red-100 text-red-700">
+                                        Cancelled
+                                    </span>
+
+                                @endif
 
                             </td>
 
                             {{-- Created By --}}
                             <td class="p-4 text-gray-700">
-                                {{ $purchaseOrder->orderedBy->name }}
+                                {{ $po->orderedBy->name }}
                             </td>
 
                             {{-- Actions --}}
                             <td class="p-4">
 
-                                <div class="flex gap-3">
+                                <div class="flex flex-wrap gap-3 items-center">
 
-                                    <a href="{{ route('purchase-orders.show', $purchaseOrder) }}"
+                                    {{-- View --}}
+                                    <a href="{{ route('purchase-orders.show', $po) }}"
                                        class="text-blue-600 hover:underline font-medium">
 
                                         View
 
                                     </a>
+
+                                    {{-- Approve --}}
+                                    @if($po->status === 'pending')
+
+                                        <form method="POST"
+                                              action="{{ route('purchase-orders.approve', $po) }}">
+
+                                            @csrf
+
+                                            <button type="submit"
+                                                    class="text-green-600 hover:underline font-medium">
+
+                                                Approve
+
+                                            </button>
+
+                                        </form>
+
+                                    @endif
+
+                                    {{-- Receive --}}
+                                    @if($po->status === 'approved')
+
+                                        <form method="POST"
+                                              action="{{ route('purchase-orders.receive', $po) }}">
+
+                                            @csrf
+
+                                            <button type="submit"
+                                                    class="text-blue-600 hover:underline font-medium">
+
+                                                Receive
+
+                                            </button>
+
+                                        </form>
+
+                                    @endif
+
+                                    {{-- Cancel --}}
+                                    @if($po->status !== 'received')
+
+                                        <form method="POST"
+                                              action="{{ route('purchase-orders.cancel', $po) }}">
+
+                                            @csrf
+
+                                            <button type="submit"
+                                                    class="text-red-600 hover:underline font-medium">
+
+                                                Cancel
+
+                                            </button>
+
+                                        </form>
+
+                                    @endif
 
                                 </div>
 

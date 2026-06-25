@@ -102,4 +102,5 @@ class ProductController extends Controller
             ->route('products.index')
             ->with('success', 'Product deleted successfully');
     }
+
 }

@@ -30,4 +30,19 @@ class PurchaseOrder extends Model
     {
         return $this->belongsTo(User::class, 'ordered_by');
     }
+    
+    public function isPending()
+    {
+        return $this->status === 'pending';
+    }
+
+    public function isApproved()
+    {
+        return $this->status === 'approved';
+    }
+
+    public function isReceived()
+    {
+        return $this->status === 'received';
+    }
 }

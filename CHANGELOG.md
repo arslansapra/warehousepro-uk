@@ -7,6 +7,26 @@ and this project follows Semantic Versioning.
 
 ---
 
+## [0.5.1] - 2026-06-25
+
+### Added
+- Purchase Order approval workflow (Pending → Approved → Received → Cancelled)
+- Purchase Order approval functionality
+- Purchase Order receiving process with stock integration
+- Automatic stock increment when Purchase Order is received
+- Stock Movement creation from Purchase Order receiving
+- Business rules for Purchase Order cancellation restrictions
+- End-to-end Purchase Order lifecycle testing scenarios
+
+### Improved
+- Purchase Order workflow reliability and state management
+- Inventory consistency across stock movements and purchase orders
+- Data integrity between products, stock movements, and purchase orders
+- ERP-style workflow structure (approval-based system)
+- System validation for state transitions (prevent invalid actions)
+
+---
+
 ## [0.5.0] - 2026-06-25
 
 ### Added
@@ -56,7 +76,7 @@ and this project follows Semantic Versioning.
 - Tailwind CSS-based UI for Stock Movements
 
 ### Improved
-- Automatic inventory updates based on stock movement type
+- Automatic inventory updates based on stock movement types
 - Stock availability validation for Stock Out operations
 - Consistent UI design across all modules
 
