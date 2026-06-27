@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project follows Semantic Versioning.
 
 ---
+## [0.6.0] - 2026-06-27
+
+### Added
+- Warehouse Dashboard module
+- Dashboard Service layer for business logic
+- Warehouse Key Performance Indicators (KPIs)
+- Business analytics for warehouse reporting
+- Dashboard statistics including:
+    - Total Products
+    - Low Stock Items
+    - Pending Purchase Orders
+    - Total Suppliers
+    - Today's Stock In
+    - Today's Stock Out
+- Recent Stock Movements activity feed
+- Laravel Cache implementation for dashboard statistics
 
 ## [0.5.1] - 2026-06-25
 
