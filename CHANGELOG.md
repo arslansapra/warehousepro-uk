@@ -6,6 +6,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project follows Semantic Versioning.
 
 ---
+
+## [0.6.1] - 2026-06-27
+
+### Added
+- Event-driven notification system implementation
+- Purchase Order notifications (full lifecycle support)
+  - PO Created → Manager notifications
+  - PO Approved → Warehouse staff notifications
+  - PO Received → Admin notifications
+- Low Stock detection event system
+- Database notifications integration using Laravel Notifications table
+- Email + database dual-channel notification support
+- Role-based notification dispatching (warehouse manager targeting)
+- Event & Listener architecture for warehouse workflows
+- Purchase Order lifecycle event hooks
+- Centralized notification handling via Laravel Events
+
+
+### Improved
+- Decoupled business logic using Events and Listeners
+- Improved scalability of notification system
+- Cleaner separation between controllers and notification logic
+- Better maintainability of stock and purchase order workflows
+- Enhanced warehouse operational visibility through alerts
+- Standardized event naming and workflow structure
+
+
 ## [0.6.0] - 2026-06-27
 
 ### Added

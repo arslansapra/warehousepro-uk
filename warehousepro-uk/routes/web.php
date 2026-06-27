@@ -9,6 +9,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route; 
+use App\Http\Controllers\NotificationController;
 
 
 Route::get('/', function () {
@@ -20,8 +21,13 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+
+    Route::get('/notifications', [NotificationController::class, 'index'])
+    ->name('notifications.index');  
+    Route::post('/notifications/{notification}/read',[NotificationController::class, 'markAsRead'])->name('notifications.read');  
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

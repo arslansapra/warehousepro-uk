@@ -7,6 +7,11 @@ use App\Http\Requests\StorePurchaseOrderRequest;
 use App\Models\Product;
 use App\Models\Supplier;
 use App\Models\StockMovement;
+
+use App\Events\PurchaseOrderCreated;
+use App\Events\PurchaseOrderApproved;
+use App\Events\PurchaseOrderReceived;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -59,33 +64,35 @@ class PurchaseOrderController extends Controller
      */
     public function store(StorePurchaseOrderRequest $request)
     {
-        $data = $request->validated();
+        $poNumber = 'PO-' . strtoupper(uniqid());
 
-        DB::transaction(function () use ($data) {
+        // 1. CREATE FIRST (THIS FIXES YOUR ERROR)
+        $purchaseOrder = PurchaseOrder::create([
+            'po_number' => $poNumber,
+            'supplier_id' => $request->supplier_id,
+            'status' => 'pending',
+            'ordered_by' => auth()->id(),
+            'notes' => $request->notes,
+        ]);
 
-            $purchaseOrder = PurchaseOrder::create([
-                'po_number' => 'PO-' . strtoupper(uniqid()),
-                'supplier_id' => $data['supplier_id'],
-                'status' => 'pending',
-                'ordered_by' => auth()->id(),
-                'notes' => $data['notes'] ?? null,
+        // 2. ADD ITEMS
+        foreach ($request->items as $item) {
+            $purchaseOrder->items()->create([
+                'product_id' => $item['product_id'],
+                'quantity' => $item['quantity'],
             ]);
+        }
 
-            foreach ($data['items'] as $item) {
-
-                $purchaseOrder->items()->create([
-                    'product_id' => $item['product_id'],
-                    'quantity' => $item['quantity'],
-                ]);
-            }
-        });
+        // 3. FIRE EVENT (NOW VARIABLE EXISTS)
+        if ($purchaseOrder){
+            //dd('CONTROLLER HIT');
+        event(new PurchaseOrderCreated($purchaseOrder));
+       // dd('EVENT CALLED');
+        }
 
         return redirect()
             ->route('purchase-orders.index')
-            ->with(
-                'success',
-                'Purchase Order created successfully.'
-            );
+            ->with('success', 'Purchase Order created successfully');
     }
 
     /**
@@ -139,6 +146,8 @@ class PurchaseOrderController extends Controller
             'status' => 'approved'
         ]);
 
+        event(new PurchaseOrderApproved($purchaseOrder));
+
         return back()->with('success', 'Purchase Order approved.');
     }
     //Receive PO
@@ -169,6 +178,8 @@ class PurchaseOrderController extends Controller
             'status' => 'received',
             'received_at' => now()
         ]);
+
+        event(new PurchaseOrderReceived($purchaseOrder));
 
         return back()->with('success', 'Goods received and stock updated.');
     }

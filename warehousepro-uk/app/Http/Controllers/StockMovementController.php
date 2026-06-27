@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
+
 use App\Models\StockMovement;
 use App\Models\Product;
 use App\Models\User;
 use App\Http\Requests\StoreStockMovementRequest;
+use App\Events\LowStockDetected;
+
 use Illuminate\Http\Request;
 
 class StockMovementController extends Controller
@@ -45,7 +49,7 @@ class StockMovementController extends Controller
             );
 
         } 
-//If User wan to Stock Out        
+//If User want to Stock Out        
         elseif ($request->type === 'stock_out') {
 
             if (
@@ -86,6 +90,11 @@ class StockMovementController extends Controller
             'reason' => $request->reason,
 
         ]);
+
+        if ($product->quantity < 10) {
+           // dd('EVENT TRIGGERED');
+            event(new LowStockDetected($product));
+        }
 
         return redirect()
             ->route('stock-movements.index')
