@@ -7,8 +7,10 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
 use App\Models\Role;
 use App\Models\StockMovement;
+
 
 class User extends Authenticatable
 {
@@ -24,6 +26,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -56,4 +59,29 @@ class User extends Authenticatable
     public function stockMovements(){
         return $this->hasMany(StockMovement::class);
     }
+
+    public function isAdmin(): bool{
+        return $this->role?->slug === 'admin';
+    }
+
+    public function isManager(): bool
+    {
+        return $this->role?->slug === 'warehouse_manager';
+    }
+
+    public function isStaff(): bool
+    {
+        return $this->role?->slug === 'staff';
+    }
+
+    public function isPicker(): bool
+    {
+        return $this->role?->slug === 'picker';
+    }
+
+    public function isPacker(): bool
+    {
+        return $this->role?->slug === 'packer';
+    }
+
 }

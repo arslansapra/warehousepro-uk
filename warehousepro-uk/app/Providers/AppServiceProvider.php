@@ -4,6 +4,13 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Models\PurchaseOrder;
+use App\Policies\PurchaseOrderPolicy;
+use Illuminate\Support\Facades\Gate;
+
+use App\Models\Product;
+use App\Policies\ProductPolicy;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -19,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::policy(PurchaseOrder::class, PurchaseOrderPolicy::class);
+        Gate::policy(Product::class, ProductPolicy::class);
     }
 }

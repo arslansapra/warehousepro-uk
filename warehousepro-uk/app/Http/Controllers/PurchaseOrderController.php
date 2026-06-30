@@ -138,9 +138,12 @@ class PurchaseOrderController extends Controller
     //Approve PO
     public function approve(PurchaseOrder $purchaseOrder)
     {
+        $this->authorize('approve', $purchaseOrder);
+        
         if ($purchaseOrder->status !== 'pending') {
             return back()->with('error', 'Only pending POs can be approved.');
         }
+
 
         $purchaseOrder->update([
             'status' => 'approved'
@@ -153,6 +156,8 @@ class PurchaseOrderController extends Controller
     //Receive PO
     public function receive(PurchaseOrder $purchaseOrder)
     {
+        $this->authorize('approve', $purchaseOrder);
+
         if ($purchaseOrder->status !== 'approved') {
             return back()->with('error', 'Only approved POs can be received.');
         }
@@ -186,9 +191,12 @@ class PurchaseOrderController extends Controller
     //Cancel PO
     public function cancel(PurchaseOrder $purchaseOrder)
     {
+        $this->authorize('approve', $purchaseOrder);
+
         if ($purchaseOrder->status === 'received') {
             return back()->with('error', 'Received POs cannot be cancelled.');
         }
+
 
         $purchaseOrder->update([
             'status' => 'cancelled'

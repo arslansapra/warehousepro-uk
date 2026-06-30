@@ -134,13 +134,14 @@
                                               action="{{ route('purchase-orders.approve', $po) }}">
 
                                             @csrf
-
+                                            @can('approve', $po)
                                             <button type="submit"
                                                     class="text-green-600 hover:underline font-medium">
 
                                                 Approve
 
                                             </button>
+                                            @endcan
 
                                         </form>
 
@@ -153,13 +154,14 @@
                                               action="{{ route('purchase-orders.receive', $po) }}">
 
                                             @csrf
-
+                                            @can('receive', $po)
                                             <button type="submit"
                                                     class="text-blue-600 hover:underline font-medium">
 
                                                 Receive
 
                                             </button>
+                                            @endcan    
 
                                         </form>
 
@@ -172,14 +174,15 @@
                                               action="{{ route('purchase-orders.cancel', $po) }}">
 
                                             @csrf
-
+                                            @can('cancel', $po)
                                             <button type="submit"
                                                     class="text-red-600 hover:underline font-medium">
 
                                                 Cancel
 
                                             </button>
-
+                                            @endcan
+                                            
                                         </form>
 
                                     @endif

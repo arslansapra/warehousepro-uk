@@ -7,6 +7,26 @@ and this project follows Semantic Versioning.
 
 ---
 
+## [0.7.0] - 2026-06-30
+
+### Added
+- Role-Based Access Control (RBAC) implementation
+- Role middleware for route-level authorization
+- Product authorization policy
+- Purchase Order authorization policy
+- Role helper methods in the User model
+- Blade authorization checks for role-based UI rendering
+- Protected administrative routes based on user roles
+- Authorization checks for Purchase Order approval, receiving, and cancellation
+- Authorization checks for Product creation, editing, and deletion
+
+### Improved
+- Application security through layered authorization (Middleware + Policies + Blade)
+- Route protection for administrative and warehouse management features
+- User interface by hiding unauthorized actions and navigation elements
+- Separation of business authorization logic using Laravel Policies
+- Overall system security by preventing unauthorized access to protected resources
+
 ## [0.6.1] - 2026-06-27
 
 ### Added

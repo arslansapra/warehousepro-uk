@@ -10,17 +10,24 @@ class RoleMiddleware
 {
     /**
      * Handle an incoming request.
-     *
-     * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next, string $role): Response
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        if(! auth()->check()){ 
+        // User must be logged in
+        if (!auth()->check()) {
             return redirect('/login');
         }
 
-        if(auth()->user()->role?->slug !== $role){
-            abort(403);
+        $user = auth()->user();
+
+        // User must have a role assigned
+        if (!$user->role) {
+            abort(403, 'No role assigned.');
+        }
+
+        // Check if user's role is allowed
+        if (!in_array($user->role->slug, $roles)) {
+            abort(403, 'You are not authorized to access this page.');
         }
 
         return $next($request);

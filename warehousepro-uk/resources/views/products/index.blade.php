@@ -8,12 +8,12 @@
             <h1 class="text-3xl font-bold">
                 Products
             </h1>
-
+@can('create', App\Models\Product::class)
             <a href="{{ route('products.create') }}"
                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
                 + Add Product
             </a>
-
+@endcan
         </div>
 
         {{-- Success Message --}}
@@ -47,8 +47,9 @@
                         <th class="p-4 text-left">Qty</th>
 
                         <th class="p-4 text-left">Price</th>
-
+                        @can('create', App\Models\Product::class)
                         <th class="p-4 text-left">Actions</th>
+                        @endcan
 
                     </tr>
 
@@ -121,15 +122,16 @@
                             <td class="p-4 font-semibold">
                                 £{{ number_format($product->price, 2) }}
                             </td>
-
+                            @can('create', App\Models\Product::class)
                             {{-- Actions --}}
                             <td class="p-4 flex gap-4">
-
+                                @can('update', $product)
                                 <a href="{{ route('products.edit', $product) }}"
                                    class="text-blue-600 hover:underline">
                                     Edit
                                 </a>
-
+                                @endcan
+                                @can('delete', $product)
                                 <form method="POST"
                                       action="{{ route('products.destroy', $product) }}">
 
@@ -143,10 +145,12 @@
                                         Delete
 
                                     </button>
+                                @endcan    
 
                                 </form>
 
                             </td>
+                            @endcan
 
                         </tr>
 
