@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\WarehouseLocation;
 use App\Models\StockMovement;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'name',
         'sku',

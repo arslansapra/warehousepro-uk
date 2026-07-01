@@ -57,6 +57,7 @@ This project is being developed using professional software development practice
 - Notifications & Automation
 - Role-Based Access Control (RBAC)
 - Professional UI System (SaaS-Level Frontend)
+- Testing
 
 ## Author
 

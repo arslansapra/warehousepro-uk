@@ -1,9 +1,18 @@
 <?php
 
 use App\Models\User;
+use App\Models\Role;
 
 test('profile page is displayed', function () {
-    $user = User::factory()->create();
+
+    $role = Role::create([
+        'name' => 'Admin',
+        'slug' => 'admin',
+    ]);
+
+    $user = User::factory()->create([
+        'role_id' => $role->id,
+    ]);
 
     $response = $this
         ->actingAs($user)

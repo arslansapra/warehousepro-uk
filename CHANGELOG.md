@@ -7,6 +7,37 @@ and this project follows Semantic Versioning.
 
 ---
 
+## [0.8.1] - 2026-07-01
+
+### Added
+- Comprehensive automated test suite covering full warehouse system
+- Authentication tests (login, register, logout, email verification, password reset, password update)
+- Profile management tests (update profile, delete account, validation rules)
+- Supplier module tests (CRUD operations, validation, role-based access control)
+- Product module tests (admin creation, staff restriction enforcement)
+- Purchase Order lifecycle tests:
+  - Create purchase orders
+  - Validation handling
+  - Approve workflow
+  - Receive workflow with stock updates
+  - Cancel workflow
+  - Stock movement tracking verification
+- Role-based access control test coverage across all modules
+
+### Fixed
+- Fixed database constraint issues discovered during testing (e.g. ordered_by handling in purchase orders)
+- Fixed factory inconsistencies for test environment (Category, WarehouseLocation, etc.)
+- Fixed sidebar crash caused by null role relationship in authenticated users
+- Fixed duplicate helper function redeclaration issue in test suite
+- Fixed inconsistent test failures due to missing required model fields
+
+### Improved
+- Stabilized full test suite to 43/43 passing tests (104 assertions)
+- Improved reliability of factories under SQLite in-memory testing
+- Improved controller consistency across purchase order workflow
+- Improved test coverage across all core ERP modules
+- Improved system resilience against null relationships and missing data
+
 ## [0.8.0] - 2026-07-01
 
 ### Added

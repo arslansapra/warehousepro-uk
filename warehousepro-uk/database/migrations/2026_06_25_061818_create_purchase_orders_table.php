@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('status', [
                 'pending', 'approved', 'received', 'cancelled'
             ])->default('pending');
-            $table->foreignId('orderer_by')->constrained('users')->casecadeOnDelete();
+            $table->foreignId('ordered_by')->constrained('users')->casecadeOnDelete();
             $table->text('notes')->nullable();
             
             $table->timestamps();

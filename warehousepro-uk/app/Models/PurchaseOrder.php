@@ -5,9 +5,12 @@ namespace App\Models;
 use App\Models\Supplier;
 use App\Models\PurchaseOrderItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PurchaseOrder extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'po_number',
         'supplier_id',
