@@ -7,6 +7,22 @@ and this project follows Semantic Versioning.
 
 ---
 
+## [0.8.0] - 2026-07-01
+
+### Added
+- Role-based dashboard UI with dynamic sections per user role
+- WarehousePro redesigned layout (sidebar + top navigation structure)
+- Professional notification UI with dropdown bell and unread badge counter
+- Enhanced user dropdown menu (Profile, Role display, Logout)
+- Modern ERP-style sidebar with active state highlighting
+- Clean separation of navigation based on roles (Admin / Manager / Staff)
+
+### Improved
+- Improved UI/UX consistency across entire application layout
+- Improved navigation structure for warehouse workflows
+- Better visual hierarchy in dashboard KPIs and statistics cards
+- More intuitive role-based user experience across modules
+
 ## [0.7.0] - 2026-06-30
 
 ### Added

@@ -54,6 +54,9 @@ This project is being developed using professional software development practice
 - Stock Movements
 - Supplier Module
 - Purchase Order
+- Notifications & Automation
+- Role-Based Access Control (RBAC)
+- Professional UI System (SaaS-Level Frontend)
 
 ## Author
 
